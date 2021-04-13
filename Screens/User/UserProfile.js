@@ -32,7 +32,6 @@ const UserProfile = (props) => {
                 .then((user) => setUserProfile(user.data))
         })
         .catch((error) => console.log(error))
-        console.log(userProfile.name);
 
     return () => {
         setUserProfile();

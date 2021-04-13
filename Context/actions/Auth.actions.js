@@ -37,7 +37,7 @@ export const loginUser = (user, dispatch) => {
 };
 
 export const getUserProfile = (id) => {
-    fetch(`${baseURL}users/${id}`, {
+    fetch(`/${baseURL}users/${id}`, {
         method: "GET",
         body: JSON.stringify(user),
         headers: {
