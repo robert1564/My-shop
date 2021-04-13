@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Button } from "react-native";
 import FormContainer from "../../Shared/Form/FormContainer";
 import Input from "../../Shared/Form/Input";
 import Error from "../../Shared/Error";
+import MyButton from "../../Shared/StyledComponents/MyButton";
 
 // Context
 import AuthGlobal from "../../Context/store/AuthGlobal";
@@ -10,8 +11,8 @@ import { loginUser } from "../../Context/actions/Auth.actions";
 
 const Login = (props) => {
   const context = useContext(AuthGlobal);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const Login = (props) => {
     if (email === "" || password === "") {
       setError("Please fill in your credentials");
     } else {
-      loginUser(user, context.dispatch)
+      loginUser(user, context.dispatch);
     }
   };
 
@@ -52,14 +53,23 @@ const Login = (props) => {
       />
       <View styles={styles.buttonGroup}>
         {error ? <Error message={error} /> : null}
-        <Button title="Login" onPress={() => handleSubmit()}/>
+        <MyButton 
+          large 
+          primary 
+          onPress={() => handleSubmit()}
+        >
+          <Text style={{ color: "white" }}>Login</Text>
+        </MyButton>
       </View>
       <View style={[{ marginTop: 40 }, styles.buttonGroup]}>
         <Text style={styles.middleText}>Don't have an account yet?</Text>
-        <Button
-          title="Register"
+        <MyButton
+          large
+          secondary
           onPress={() => props.navigation.navigate("Register")}
-        />
+        >
+          <Text style={{ color: "white" }}>Register</Text>
+        </MyButton>
       </View>
     </FormContainer>
   );

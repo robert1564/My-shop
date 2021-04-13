@@ -6,11 +6,13 @@ import {
     Image,
     TouchableHighLight,
     TouchableOpacity,
+    ScrollView,
     Dimensions,
     Button,
     Modal
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome"
+import MyButton from "../../Shared/StyledComponents/MyButton";
 
 var {width} = Dimensions.get("window");
 
@@ -19,6 +21,7 @@ const ListItem = (props) => {
     const [modalVisible, setModalVisible] = useState(false)
 
     return(
+        <ScrollView>
         <View>
             <Modal
                 animationType="fade"
@@ -44,15 +47,27 @@ const ListItem = (props) => {
                         >
                             <Icon name="close" size={20} />
                         </TouchableOpacity>
-                        <Button title="Edit" 
-                            onPress={() => [
-                                props.navigation.navigate("ProductForm"),
-                                setModalVisible(false)
-                            ]}
-                        />
-                        <Button title="Delete" 
-                            // Delete
-                        />
+                        <MyButton 
+                        medium 
+                        secondary
+                        onPress={() => [
+                            props.navigation.navigate("ProductForm", {item: props}),
+                            setModalVisible(false)
+                        ]}
+                        >
+                            <Text style={styles.textStyle}>
+                                Edit
+                            </Text>
+                        </MyButton>
+                        <MyButton 
+                        medium 
+                        danger
+                        onPress={() => [props.delete(props._id), setModalVisible(false)]}
+                        >
+                            <Text style={styles.textStyle}>
+                                Delete
+                            </Text>
+                        </MyButton>
                     </View>
                 </View>
 
@@ -82,6 +97,7 @@ const ListItem = (props) => {
                 <Text style={styles.item}>$ {props.price}</Text>
             </TouchableOpacity>
         </View>
+        </ScrollView>
     )
 }
 

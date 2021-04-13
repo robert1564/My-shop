@@ -4,6 +4,7 @@ import FormContainer from "../../Shared/Form/FormContainer";
 import Input from "../../Shared/Form/Input";
 import Error from "../../Shared/Error";
 import Toast from "react-native-toast-message";
+import MyButton from "../../Shared/StyledComponents/MyButton"
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import axios from "axios";
@@ -91,14 +92,23 @@ const Register = (props) => {
           {error ? <Error message={error} /> : null}
         </View>
         <View>
-            <Button title={"Register"}
+            <MyButton 
+              large
+              primary
               onPress={() => register()}
-            />
+            >
+              <Text style={{color:"white"}}>Register</Text>
+            </MyButton>
         </View>
         <View>
-            <Button title={"Back to Login"} onPress={
-                () => props.navigation.navigate("Login")
-            }/>
+            <MyButton
+            large 
+            secondary
+            onPress={() => props.navigation.navigate("Login")
+            }
+            >
+            <Text style={{color:"white"}}>Back to Login</Text>
+            </MyButton>
         </View>
       </FormContainer>
     </KeyboardAwareScrollView>

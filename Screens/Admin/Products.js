@@ -16,6 +16,7 @@ import ListItem from './ListItem'
 import axios from "axios"
 import baseURL from "../../assets/common/baseUrl"
 import AsyncStorage from "@react-native-community/async-storage"
+import MyButton from "../../Shared/StyledComponents/MyButton";
 
 
 var { height, width} = Dimensions.get("window")
@@ -88,8 +89,46 @@ const Products = (props) => {
         )
     }
 
+    const deleteProduct = (id) => {
+        axios
+        .delete(`${baseURL}products/${id}`, {
+            headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+            const product =productFilter.filter((item) => item.id !== id)
+            setProductFilter(product)
+        })
+        .catch((error) => console.log(error));
+    }
+
   return (
-    <View>
+    <View style={styles.container}>
+        <View style={styles.buttonContainer}>
+            <MyButton
+                secondary
+                medium
+                onPress={() => props.navigation.navigate("Orders")}
+            >
+                <Icon name="shopping-bag" size={18} color={"white"} />
+                <Text style={styles.buttonText}>Orders</Text>
+            </MyButton>
+            <MyButton
+                secondary
+                medium
+                onPress={() => props.navigation.navigate("ProductForm")}
+            >
+                <Icon name="plus" size={18} color={"white"} />
+                <Text style={styles.buttonText}>Products</Text>
+            </MyButton>
+            <MyButton
+                secondary
+                medium
+                onPress={() => props.navigation.navigate("Categories")}
+            >
+                <Icon name="plus" size={18} color={"white"} />
+                <Text style={styles.buttonText}>Categories</Text>
+            </MyButton>
+        </View>
       <View>
           <Header searchBar rounded>
               <Item style = {{ padding:5 }}>
@@ -115,6 +154,7 @@ const Products = (props) => {
                     {...item}
                     navigation={props.navigation}
                     index={index}
+                    delete={deleteProduct}
                 />
             )}
             keyExtractor = {(item) => item.id}
@@ -138,6 +178,19 @@ const styles = StyleSheet.create({
         height: height / 2,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    container: {
+        marginBottom: 160,
+        backgroundColor: 'white'
+    },
+    buttonContainer: {
+        margin: 20,
+        alignSelf: 'center',
+        flexDirection: 'row'
+    },
+    buttonText: {
+        marginLeft: 4,
+        color: 'white'
     }
 })
 
