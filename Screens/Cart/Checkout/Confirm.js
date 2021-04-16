@@ -17,7 +17,8 @@ import baseURL from "../../../assets/common/baseUrl"
 
 var { width, height } = Dimensions.get('window')
 
-const Confirm = (props) =>{
+
+const Confirm = (props) => {
 
     const finalOrder = props.route.params;
 
@@ -28,7 +29,7 @@ const Confirm = (props) =>{
         axios
         .post(`${baseURL}orders`, order)
         .then((res) => {
-            if(res.status == 200 || res.status == 201){
+            if (res.status == 200 || res.status == 201) {
                 Toast.show({
                     topOffset: 60,
                     type: "success",
@@ -49,6 +50,8 @@ const Confirm = (props) =>{
                 text2: "Please try again",
             })
         })
+
+        
     }
 
     return(
@@ -89,14 +92,13 @@ const Confirm = (props) =>{
                             </ListItem>
                         )
                     })}
-                </View>
-            : null}
-            <View style={{ alignItems: 'center', margin: 20 }}>
+                </View>    
+           : null }
+           <View style={{ alignItems: 'center', margin: 20 }}>
                 <Button title={'Place order'} onPress={confirmOrder}/>
-            </View>
+           </View>
             </View>
         </ScrollView>
-        
     )
 }
 

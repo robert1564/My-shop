@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   View,
   Dimensions,
   StyleSheet,
-  Button,
   TouchableOpacity,
 } from "react-native";
 import {
@@ -11,29 +10,28 @@ import {
   Text,
   Left,
   Right,
-  ListItem,
-  Thumbnail,
-  H1,
-  Body,
+  H1
 } from "native-base";
-import { SwipeListView } from "react-native-swipe-list-view";
-import CartItem from "./CartItem";
+import { SwipeListView } from 'react-native-swipe-list-view'
+import CartItem from './CartItem'
 
 import Icon from "react-native-vector-icons/FontAwesome";
 import MyButton from "../../Shared/StyledComponents/MyButton"
 
 import { connect } from "react-redux";
 import * as actions from "../../Redux/Actions/cartActions";
+import AuthGlobal from "../../Context/store/AuthGlobal"
 
 var { height, width } = Dimensions.get("window");
 
 const Cart = (props) => {
-  console.log(props.cartItems);
 
-  var total = 0;
-  props.cartItems.forEach((cart) => {
-    return (total += cart.product.price);
-  });
+  const context = useContext(AuthGlobal);
+
+    var total = 0;
+    props.cartItems.forEach(cart => {
+        return (total += cart.product.price)
+    });
 
   return (
     <>
@@ -65,26 +63,36 @@ const Cart = (props) => {
           />
           <View style={styles.bottomContainer}>
             <Left>
-              <Text style={styles.price}>$ {total}</Text>
+                <Text style={styles.price}>$ {total}</Text>
             </Left>
             <Right>
-              <MyButton 
-              danger
-              medium
-              onPress={() => props.clearCart()
-              } 
-              >
-                <Text style={{color:"white"}}>Clear</Text>
-              </MyButton>
+                <MyButton
+                  danger
+                  medium
+                  onPress={() => props.clearCart()}
+                >
+                  <Text style={{ color: 'white' }}>Clear</Text>
+                </MyButton>
             </Right>
             <Right>
-              <MyButton
-                primary
-                medium
-                onPress={() => props.navigation.navigate("Checkout")}
-              >
-                  <Text style={{color:"white"}}>Checkout</Text>
-              </MyButton>
+              {context.stateUser.isAuthenticated ? (
+                <MyButton
+                  primary
+                  medium
+                  onPress={() => props.navigation.navigate('Checkout')}
+                >
+                <Text style={{ color: 'white' }}>Checkout</Text>
+                </MyButton>
+              ) : (
+                <MyButton
+                  secondary
+                  medium
+                  onPress={() => props.navigation.navigate('Login')}
+                >
+                <Text style={{ color: 'white' }}>Login</Text>
+                </MyButton>
+              )}
+                
             </Right>
           </View>
         </Container>
@@ -108,9 +116,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     clearCart: () => dispatch(actions.clearCart()),
-    removeFromCart: (item) => dispatch(actions.removeFromCart(item)),
-  };
-};
+    removeFromCart: (item) => dispatch(actions.removeFromCart(item))
+    }
+}
 
 const styles = StyleSheet.create({
   emptyContainer: {
@@ -118,33 +126,32 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-
   bottomContainer: {
-    flexDirection: "row",
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    backgroundColor: "white",
-    elevation: 20,
+      flexDirection: 'row',
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      backgroundColor: 'white',
+      elevation: 20
   },
   price: {
-    fontSize: 18,
-    margin: 20,
-    color: "red",
+      fontSize: 18,
+      margin: 20,
+      color: 'red'
   },
   hiddenContainer: {
     flex: 1,
-    justifyContent: "flex-end",
-    flexDirection: "row",
+    justifyContent: 'flex-end',
+    flexDirection: 'row'
   },
   hiddenButton: {
-    backgroundColor: "red",
-    justifyContent: "center",
-    alignItems: "flex-end",
+    backgroundColor: 'red',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
     paddingRight: 25,
     height: 70,
-    width: width / 1.2,
-  },
+    width: width / 1.2
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

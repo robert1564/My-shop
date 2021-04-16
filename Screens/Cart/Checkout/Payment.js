@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { View, Button } from 'react-native'
-import{
+import {
     Container,
     Header,
     Content,
@@ -13,7 +13,7 @@ import{
     Icon,
     Body,
     Title
-} from 'native-base'
+} from 'native-base';
 
 const methods = [
     { name: 'Cash on Delivery', value: 1 },
@@ -28,24 +28,23 @@ const paymentCards = [
     { name: 'Other', value: 4}
 ]
 
-const Payment = (props) =>{
+const Payment = (props) => {
 
     const order = props.route.params;
 
     const [selected, setSelected] = useState();
     const [card, setCard] = useState();
-
     return(
-        <Container>
-            <Header>
-                <Body>
-                    <Title>Choose your payment method</Title>
-                </Body>
-            </Header>
-            <Content>
-                {methods.map((item,index) => {
-                    return(
-                        <ListItem key={item.name} onPress={() => setSelected(item.value)}>
+       <Container>
+           <Header>
+               <Body>
+                   <Title>Choose your payment method</Title>
+               </Body>
+           </Header>
+           <Content>
+               {methods.map((item, index) => {
+                   return (
+                       <ListItem key={item.name} onPress={() => setSelected(item.value)}>
                            <Left>
                             <Text>{item.name}</Text>
                            </Left>
@@ -53,13 +52,12 @@ const Payment = (props) =>{
                                <Radio selected={selected == item.value}/>
                            </Right>
                        </ListItem>
-                    )
-                })}
-                {selected == 3 ? (
-                    <Picker
+                   )
+               })}
+               {selected == 3 ? (
+                   <Picker
                     mode="dropdown"
                     iosIcon={<Icon name={"arrow-down"} />}
-                    style={{  height: 50, width: 150 }}
                     headerStyle={{ backgroundColor: 'orange' }}
                     headerBackButtonTextStyle={{ color: '#fff' }}
                     headerTitleStyle={{ color: '#fff' }}
@@ -73,15 +71,14 @@ const Payment = (props) =>{
                            value={c.name} />
                        })}
                    </Picker>
-                ) : null}
-                <View style={{ marginTop: 60, alignSelf: 'center' }}>
+               ) : null }
+               <View style={{ marginTop: 60, alignSelf: 'center' }}>
                        <Button 
                        title={"Confirm"} 
                        onPress={() => props.navigation.navigate("Confirm", { order })}/>
-                </View>
-            </Content>
-        </Container>
-        
+               </View>
+           </Content>
+       </Container>
     )
 }
 

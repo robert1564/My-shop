@@ -37,12 +37,12 @@ export const loginUser = (user, dispatch) => {
 };
 
 export const getUserProfile = (id) => {
-    fetch(`/${baseURL}users/${id}`, {
+    fetch(`${baseURL}users/${id}`, {
         method: "GET",
         body: JSON.stringify(user),
         headers: {
             Accept: "application/json",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
     })
     .then((res) => res.json())

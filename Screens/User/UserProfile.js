@@ -1,4 +1,4 @@
-import React, {useContext, useState, useCallback} from 'react';
+import React, {useContext, useState, useEffect, useCallback} from 'react';
 import { View, Text, ScrollView, Button, StyleSheet } from 'react-native';
 import { Container } from 'native-base'
 import { useFocusEffect } from "@react-navigation/native"
@@ -9,11 +9,11 @@ import baseURL from "../../assets/common/baseUrl"
 
 import AuthGlobal from "../../Context/store/AuthGlobal"
 import { logoutUser } from "../../Context/actions/Auth.actions"
-import { useEffect } from 'react/cjs/react.development';
+//import { useEffect } from 'react/cjs/react.development';
 
 const UserProfile = (props) => {
-    const context = useContext(AuthGlobal)
-    const [userProfile, setUserProfile] = useState()
+    const context = useContext(AuthGlobal);
+    const [userProfile, setUserProfile] = useState();
 
     useEffect(() => {
         if(
@@ -26,8 +26,8 @@ const UserProfile = (props) => {
         AsyncStorage.getItem("jwt")
         .then((res) => {
             axios
-                .get(`${baseURL}users/${context.stateUser.user.sub}`, {
-                    headers: { Authorization: `Bearar ${res}` },
+                .get(`${baseURL}users/${context.stateUser.user.userId}`, {
+                    headers: { Authorization: `Bearer ${res}` },
                 })
                 .then((user) => setUserProfile(user.data))
         })
