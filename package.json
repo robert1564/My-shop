@@ -19,6 +19,7 @@
     "all": "0.0.0",
     "axios": "^0.21.1",
     "expo": "~40.0.0",
+    "expo-image-picker": "^10.1.4",
     "expo-status-bar": "~1.0.3",
     "jwt-decode": "^3.1.2",
     "module": "^1.2.5",

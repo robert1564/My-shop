@@ -43,6 +43,7 @@ const Confirm = (props) => {
             }
         })
         .catch((error) => {
+            console.log(finalOrder)
             Toast.show({
                 topOffset: 60,
                 type: "error",
@@ -69,7 +70,9 @@ const Confirm = (props) => {
                         <Text>City: {finalOrder.order.order.city}</Text>
                         <Text>Zip Code: {finalOrder.order.order.zip}</Text>
                         <Text>Country: {finalOrder.order.order.country}</Text>
+                        
                     </View>
+                    
                     <Text style={styles.title}>Items:</Text>
                     {finalOrder.order.order.orderItems.map((x) => {
                         return (
