@@ -19,7 +19,7 @@ const Checkout = (props) => {
     const [ address2, setAddress2 ] = useState();
     const [ city, setCity ] = useState();
     const [ zip, setZip ] = useState();
-    const [ country, setCountry ] = useState();
+    //const [ country, setCountry ] = useState();
     const [ phone, setPhone ] = useState();
     const [ user, setUser ] = useState();
 
@@ -46,7 +46,7 @@ const Checkout = (props) => {
     const checkOut = () => {
         let order = {
             city,
-            country,
+            // country,
             dateOrdered: Date.now(),
             orderItems,
             phone,
@@ -99,7 +99,7 @@ const Checkout = (props) => {
                     keyboardType={"numeric"}
                     onChangeText={(text) => setZip(text)}
                 />
-                <Item picker>
+                {/* <Item picker>
                     <Picker
                         mode="dropdown"
                         iosIcon={<Icon name="arrow-down" color={"#007aff"} />}
@@ -118,7 +118,7 @@ const Checkout = (props) => {
                                     />
                         })}
                     </Picker>
-                </Item>
+                </Item> */}
                 <View style={{ width: '80%', alignItems: "center" }}>
                     <Button title="Confirm" onPress={() => checkOut()}/>
                 </View>
