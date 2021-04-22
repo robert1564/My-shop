@@ -26,8 +26,32 @@ const Confirm = (props) => {
 
         const order = finalOrder.order.order;
 
+        const order1={
+            "orderItems": [
+                "6081bdd2798fc74588e946bb",
+                "6081bdd2798fc74588e946bc"
+            ],
+            "status": "Pending",
+            "_id": "6081bdd3798fc74588e946bd",
+            "shippingAddress1": "Flowers Street , 45",
+            "shippingAddress2": "1-B",
+            "city": "Craiova",
+            "zip": "00000",
+            "country": "Romania",
+            "phone": "+420702241333",
+            "totalPrice": 1050.8,
+            "user": {
+                "_id": "6071fa126c0dc948f8d46e2e",
+                "name": "Robert",
+                "id": "6071fa126c0dc948f8d46e2e"
+            },
+            "dateOrdered": "2021-04-22T18:17:55.661Z",
+            "__v": 0,
+            "id": "6081bdd3798fc74588e946bd"
+        }
+
         axios
-        .post(`${baseURL}orders`, order)
+        .post(`${baseURL}orders`, order1)
         .then((res) => {
             if (res.status == 200 || res.status == 201) {
                 Toast.show({
