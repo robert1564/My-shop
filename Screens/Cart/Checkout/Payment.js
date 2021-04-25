@@ -58,6 +58,7 @@ const Payment = (props) => {
                    <Picker
                     mode="dropdown"
                     iosIcon={<Icon name={"arrow-down"} />}
+                    style={{ height: 50, width: 150 }}
                     headerStyle={{ backgroundColor: 'orange' }}
                     headerBackButtonTextStyle={{ color: '#fff' }}
                     headerTitleStyle={{ color: '#fff' }}
