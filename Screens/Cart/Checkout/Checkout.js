@@ -19,7 +19,7 @@ const Checkout = (props) => {
     const [ address2, setAddress2 ] = useState();
     const [ city, setCity ] = useState();
     const [ zip, setZip ] = useState();
-    //const [ country, setCountry ] = useState();
+    const [ country, setCountry ] = useState();
     const [ phone, setPhone ] = useState();
     const [ user, setUser ] = useState();
 
