@@ -7,7 +7,7 @@ It was built in a linear and progressive manner. Being full of features:
  - Maked reusable components for a good workflow rate;
  - Can be a cross-platform mobile app, with minor changes (I developed only on Android, not having a MAC device to develop on IOS);
  - Fully working search within app, carousel and more features;
- - Authentification was made based on JWT (JSON Web Token)
+ - Authentification was made based on JWT (JSON Web Token);
  - Intuitive mobile design patern.
 
 Back-end Schema:
